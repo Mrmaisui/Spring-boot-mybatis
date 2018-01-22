@@ -2,16 +2,15 @@ package tk.mybatis.springboot.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.springboot.Application;
-import tk.mybatis.springboot.model.City;
 import tk.mybatis.springboot.model.Country;
 import tk.mybatis.springboot.model.DTO.CityDTO;
 import tk.mybatis.springboot.service.CityService;
 import tk.mybatis.springboot.service.CountryService;
+import tk.mybatis.springboot.utils.CreateSimpleExcelToDisk;
 import tk.mybatis.springboot.utils.PageBean;
 import tk.mybatis.springboot.utils.PageModel;
 import tk.mybatis.springboot.utils.PageUtil;
@@ -20,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author liuzh
+ * @author
  * @since 2017/9/2.
  */
 @RunWith(SpringRunner.class)
@@ -100,9 +99,19 @@ public class CountryServiceTest {
       }
     }
 
+    @Resource
+    public CreateSimpleExcelToDisk createSimpleExcelToDisk;
     @Test
-    public void aa(){
-       List<City>allCity =cityService.getAllCity();
-        System.out.println(allCity.size());
+    public void getExcel()throws Exception{
+        String fileName="City";
+        String file="D:/city.xls";
+        createSimpleExcelToDisk.getExcel(fileName,file);
     }
+    @Test
+    public void readExcel()throws Exception{
+        String fileName="City";
+        String file="D:/city.xls";
+        createSimpleExcelToDisk.readExcel();
+    }
+
 }
