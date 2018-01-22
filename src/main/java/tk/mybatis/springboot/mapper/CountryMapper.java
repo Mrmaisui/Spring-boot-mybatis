@@ -24,9 +24,18 @@
 
 package tk.mybatis.springboot.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import tk.mybatis.springboot.model.Country;
 import tk.mybatis.springboot.util.MyMapper;
 
-public interface CountryMapper extends MyMapper<Country> {
+import java.util.List;
 
+public interface CountryMapper extends MyMapper<Country> {
+    Country getAllCountrybyId(@Param("countryId") Long countryId);
+
+    List<Country> getAllCountryby();
+
+    List<Country> getAllCountrybyPage(@Param("limit") Long limit, @Param("pageCount") Long pageCount);
+
+    Long getCOUNTCountryby();
 }

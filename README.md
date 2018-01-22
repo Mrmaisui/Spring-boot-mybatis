@@ -5,15 +5,7 @@
 - [mapper-spring-boot-starter](https://github.com/abel533/mapper-boot-starter)
 - [pagehelper-spring-boot-starter](https://github.com/pagehelper/pagehelper-spring-boot)
 
-## 新书《MyBatis 从入门到精通》
 
-![MyBatis 从入门到精通](https://github.com/mybatis-book/book/raw/master/book.png)
-
-预售地址：[京东](https://item.jd.com/12103309.html)，[当当](http://product.dangdang.com/25098208.html)，[亚马逊](https://www.amazon.cn/MyBatis从入门到精通-刘增辉/dp/B072RC11DM/ref=sr_1_18?ie=UTF8&qid=1498007125&sr=8-18&keywords=mybatis)
-
-CSDN博客：http://blog.csdn.net/isea533/article/details/73555400
-
-GitHub项目：https://github.com/mybatis-book/book
 
 ## 项目依赖
 ```xml
@@ -103,19 +95,6 @@ pagehelper:
 
 注意 mapper 配置，因为参数名固定，所以接收参数使用的对象，按照 Spring Boot 配置规则，大写字母都变了带横线的小写字母。针对如 IDENTITY（对应i-d-e-n-t-i-t-y）提供了全小写的 identity 配置，如果 IDE 能自动提示，看自动提示即可。
 
-## SSM集成的基础项目 
->https://github.com/abel533/Mybatis-Spring
 
-## MyBatis工具 http://www.mybatis.tk
 
-- 推荐使用 Mybatis 通用 Mapper3 https://github.com/abel533/Mapper
-
-- 推荐使用 Mybatis 分页插件 PageHelper https://github.com/pagehelper/Mybatis-PageHelper
-
-## 作者信息
-
-- 作者博客：http://blog.csdn.net/isea533
-
-- 作者邮箱：abel533@gmail.com
-
-- 如需加群，请通过 http://mybatis.tk 首页按钮加群。
+。

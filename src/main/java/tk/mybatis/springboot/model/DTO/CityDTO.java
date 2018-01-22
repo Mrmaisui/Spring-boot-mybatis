@@ -22,26 +22,29 @@
  * THE SOFTWARE.
  */
 
-package tk.mybatis.springboot.model;
+package tk.mybatis.springboot.model.DTO;
+
+import tk.mybatis.springboot.model.BaseEntity;
 
 /**
  * @author liuzh_3nofxnp
  * @since 2016-01-22 22:16
  */
-public class City extends BaseEntity {
+public class CityDTO extends BaseEntity {
     private String name;
 
     private String state;
 
-    public Long getCountryId() {
-        return countryId;
+
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setCountryId(Long countryId) {
-        this.countryId = countryId;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
-    private long countryId;
+    private String countryName;
 
     public String getName() {
         return name;

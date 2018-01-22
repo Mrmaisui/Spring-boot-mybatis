@@ -25,5 +25,23 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="tk.mybatis.springboot.mapper.CountryMapper">
+    <resultMap id="UserBaseMap" type="tk.mybatis.springboot.model.Country">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="countryname" property="countryname" jdbcType="VARCHAR"/>
+        <result column="countrycode" property="countrycode" jdbcType="VARCHAR"/>
+    </resultMap>
 
+    <select id="getAllCountrybyId" parameterType="java.lang.Long" resultMap="UserBaseMap">
+        SELECT * FROM country
+        WHERE id = #{countryId}
+    </select>
+    <select id="getAllCountryby"  resultMap="UserBaseMap">
+        SELECT * FROM country
+    </select>
+    <select id="getCOUNTCountryby"  resultType ="java.lang.Long">
+        SELECT COUNT(1) FROM country
+    </select>
+    <select id="getAllCountrybyPage" parameterType="java.lang.Long"  resultMap="UserBaseMap">
+        SELECT * FROM country  limit #{limit},#{pageCount}
+    </select>
 </mapper>

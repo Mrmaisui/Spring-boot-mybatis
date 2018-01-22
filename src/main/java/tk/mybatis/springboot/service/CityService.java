@@ -29,7 +29,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.springboot.mapper.CityMapper;
 import tk.mybatis.springboot.model.City;
+import tk.mybatis.springboot.model.Country;
+import tk.mybatis.springboot.model.DTO.CityDTO;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +43,7 @@ import java.util.List;
 @Service
 public class CityService {
 
-    @Autowired
+    @Resource
     private CityMapper cityMapper;
 
     public List<City> getAll(City city) {
@@ -64,4 +68,26 @@ public class CityService {
             cityMapper.insert(country);
         }
     }
+
+
+    @Resource
+    private CountryService countryService;
+
+    public List<CityDTO> getCityDTO() {
+        List<CityDTO> cityDTOList = new ArrayList<CityDTO>();
+        List<City> cityList = cityMapper.getAllCity();
+        for (City city : cityList) {
+            Country country = countryService.getCountryById(city.getCountryId());
+            CityDTO cityDTO = new CityDTO();
+            cityDTO.setCountryName(country.getCountryname());
+            cityDTO.setName(city.getName());
+            cityDTO.setState(city.getState());
+            cityDTOList.add(cityDTO);
+        }
+        return cityDTOList;
+    }
+    public List<City> getAllCity() {
+        return cityMapper.getAllCity();
+    }
+
 }
