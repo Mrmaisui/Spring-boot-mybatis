@@ -5,10 +5,10 @@ target/
 .idea/
 *.iml
 
+# jrebel #
+src/main/resources/rebel.xml
+
 # Eclipse #
 .settings/
 .classpath
 .project
-
-# jrebel #
-src/main/resources/rebel.xml
