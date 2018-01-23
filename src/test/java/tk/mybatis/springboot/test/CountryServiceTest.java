@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.springboot.Application;
+import tk.mybatis.springboot.model.City;
 import tk.mybatis.springboot.model.Country;
 import tk.mybatis.springboot.model.DTO.CityDTO;
 import tk.mybatis.springboot.service.CityService;
@@ -16,6 +17,8 @@ import tk.mybatis.springboot.utils.PageModel;
 import tk.mybatis.springboot.utils.PageUtil;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -91,27 +94,38 @@ public class CountryServiceTest {
 
     //第二种方法 这种方法是根据用户传进的页数到数据库进行查询，效率相对提高
     @Test
-    public void getCountryPage2(){
-      PageUtil<Country> PageList= countryService.FindPage(50L,5L);
-      List<Country> countryList1=PageList.getPageList();
-      for (Country country:countryList1){
-          System.out.println(country.getCountryname());
-      }
+    public void getCountryPage2() {
+        PageUtil<Country> PageList = countryService.FindPage(50L, 5L);
+        List<Country> countryList1 = PageList.getPageList();
+        for (Country country : countryList1) {
+            System.out.println(country.getCountryname());
+        }
     }
 
     @Resource
     public CreateSimpleExcelToDisk createSimpleExcelToDisk;
-    @Test
-    public void getExcel()throws Exception{
-        String fileName="City";
-        String file="D:/city.xls";
-        createSimpleExcelToDisk.getExcel(fileName,file);
-    }
-    @Test
-    public void readExcel()throws Exception{
-        String fileName="City";
-        String file="D:/city.xls";
-        createSimpleExcelToDisk.readExcel();
-    }
 
+    @Test
+    public void getExcel() throws Exception {
+        String fileName = "City";
+        String file = "D:/city.xls";
+        //创建excel
+        createSimpleExcelToDisk.getExcel(fileName, file);
+        //读取excel
+        List<List<Object>> lists = createSimpleExcelToDisk.read2007Excel(new File(file));
+        List<City> cityList = new ArrayList<>();
+        for (List<Object> objectList : lists) {
+            City city=new City();
+            city.setId(new Integer(objectList.get(0).toString()));
+            city.setName(objectList.get(1).toString());
+            city.setState(objectList.get(2).toString());
+            city.setCountryId(Long.valueOf(String.valueOf(objectList.get(3))).longValue());
+            cityList.add(city);
+        }
+
+        for (City city:cityList){
+            System.out.println("---------------lllllll");
+            System.out.println(city.getName());
+        }
+    }
 }

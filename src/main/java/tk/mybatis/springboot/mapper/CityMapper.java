@@ -35,5 +35,4 @@ import java.util.List;
  */
 public interface CityMapper extends MyMapper<City> {
     List<City> getAllCity();
-
 }
